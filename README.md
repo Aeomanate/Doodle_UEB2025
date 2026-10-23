@@ -25,7 +25,7 @@ Just arrow keys or WSAD.
 * The core is my implementation of ECS pattern [in a separated "simulation" layer](./src/Simulation/ECS)
   * Entity - is a simple class. 
   * Compnent - is a some data structure which stores a map of Entity to filter them by component for O(1).
-  * System - is a runtime logic around entities which have designed components.
+  * System - is a runtime logic around entities which takes all entities which have desired components.
 * [A level](./src/Simulation/GameLevels/Level1.cpp) stores systems and entities arrays. 
   Each exact level just creates appropriate entities, systems and components via 
   handful interfaces based on variadic templates.
@@ -63,4 +63,4 @@ There are some bugs in the code, need to fix them sometime:
 ## Notes
 
 * The AI agents wasn't used while implementing this game and framework.
-I've only started to use them to migrate from a propriate Framework to my own implementation of its interface.
+  I've only started to use them to migrate from a propriate Framework to my own implementation of its interface.
