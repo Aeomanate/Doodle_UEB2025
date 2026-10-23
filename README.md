@@ -13,16 +13,7 @@ I'm interested in pushing bounds of my ECS implementation: where it could be wro
 
 ## Controls 
 
-Just arrow keys. 
-
-There should have been: 
-* A mouse-based firing system
-* A menu with the pause screen
-* A system for current score based on simple number images 
-  (thus, it would have been my own image-based font)
-* A range of planform types (regular, crashable, movable, etc.)
-
-But the deadline went pass me. The scope was too large for me than.
+Just arrow keys or WSAD.
 
 ## Architecture
 
@@ -34,9 +25,23 @@ But the deadline went pass me. The scope was too large for me than.
 
 ## TODO
 
-There are some bugs in the code, need to fix them sometime.
+There should have been:
+* A mouse-based firing system
+* A menu with the pause screen
+* A system for current score based on simple number images
+  (thus, it would have been my own image-based font)
+* A range of planform types (regular, crashable, movable, etc.)
+
+But the deadline went pass me. The scope was too large for me than.
+
+There are some bugs in the code, need to fix them sometime:
 
 * The character input may stuck to left or right after releasing these buttons.
 * The whole game could crash at some point
 * The character movement must be adjusted to be more smooth and not so hard to control.
 * Extract Simulation into a separated library to make it easy testable.
+
+## AI note
+
+The AI agents wasn't used while implementing this game and framework.
+I've only started to use them to migrate from a propriate Framework to my own implementation of its interface.
