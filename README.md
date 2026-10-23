@@ -45,3 +45,11 @@ There are some bugs in the code, need to fix them sometime:
 
 The AI agents wasn't used while implementing this game and framework.
 I've only started to use them to migrate from a propriate Framework to my own implementation of its interface.
+
+## Build
+
+* You need a MinGW compiler with C++26 support
+* You need a newest CMake
+* I'm using CLion, so you shouldn't print it by yourself: 
+
+  cmake.exe --build cmake-build-release --target install -j 8
