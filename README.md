@@ -20,13 +20,14 @@ There should have been:
 * A menu with the pause screen
 * A system for current score based on simple number images 
   (thus, it would have been my own image-based font)
+* A range of planform types (regular, crashable, movable, etc.)
 
 But the deadline went pass me. The scope was too large for me than.
 
 ## Architecture
 
 * I chose reflect-cpp lib to have the simplest config and further save-load logic.
-* The core is my implementation of ECS pattern (Entity, Component, System).
+* The core is my implementation of ECS pattern [in a separated "simulation" layer](./src/Simulation/ECS)
   * Entity - is a simple class. 
   * Compnent - is a some data structure which stores a map of Entity.
   * System - is a runtime logic around entities which have designed components.
@@ -38,4 +39,4 @@ There are some bugs in the code, need to fix them sometime.
 * The character input may stuck to left or right after releasing these buttons.
 * The whole game could crash at some point
 * The character movement must be adjusted to be more smooth and not so hard to control.
-
+* Extract Simulation into a separated library to make it easy testable.
