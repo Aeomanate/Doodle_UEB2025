@@ -1,66 +1,68 @@
 # Doodle
 
-This was a test task as requirement to join an UE bootcamp.
+This was a test task required to join an Unreal Engine (UE) bootcamp.
 
-The requirement was to create a Doodle Jump clone as close as possible within a week.
+The requirement was to create a Doodle Jump clone as closely as possible within one week.
 
-[I used my old attempt to build an ECS-based game](https://github.com/Aeomanate/SpaceshipBP). 
-For 4 first days I've been trying to adapt my old work to the newest C++26 standard 
-and my new vision of how things should be done. Next 4 days I've spent on implementing the game itself.
+[I based this on my previous attempt to build an ECS-based game](https://github.com/Aeomanate/SpaceshipBP). 
+For the first 4 days, I worked on adapting my old project to the latest C++26 standard 
+and my updated vision of how things should be structured. I spent the next 4 days implementing the game itself.
 
-The actual gameplay code is pretty simple and plain, thanks to my ECS architecture. 
-I'm interested in pushing bounds of my ECS implementation: where it could be wrong?
+The gameplay code itself is quite simple and straightforward, thanks to my ECS architecture. 
+I'm interested in pushing the boundaries of my ECS implementation: where could it be improved or flawed?
 
-Originally, I had a "proprietary" implementation of graphics framework which I shouldn't have committed.
+Originally, I used a proprietary graphics framework that I should not have committed. 
 So, I replaced it with my own framework implementation. 
-Now, it's [updated to be usable via CMake fetch](https://github.com/Aeomanate/AeoGameFramework), like rapidjson-cpp. 
+Now, it has been [updated to be usable via CMake FetchContent](https://github.com/Aeomanate/AeoGameFramework), similar to rapidjson-cpp. 
 
 ## Controls 
 
-Just arrow keys or WSAD.
+Arrow keys or WASD.
 
 ## Architecture
 
-* I chose reflect-cpp lib to have the simplest config and further save-load logic.
-* The core is my implementation of ECS pattern [in a separated "simulation" layer](./src/Simulation/ECS)
-  * Entity - is a simple class. 
-  * Compnent - is a some data structure which stores a map of Entity to filter them by component for O(1).
-  * System - is a runtime logic around entities which takes all entities which have desired components.
-* [A level](./src/Simulation/GameLevels/Level1.cpp) stores systems and entities arrays. 
-  Each exact level just creates appropriate entities, systems and components via 
-  handful interfaces based on variadic templates.
-* There is also an implementation of Qt/UE-signal-like reactive messaging system. 
-  [It's the Observer pattern implementation](./src/EventsHandling), which helps in transferring input events to systems.
-* Dependencies are handled via CMake fetch from GitHub appropriate repositories. 
-  An overall count of files you need to compile is around 228.
+* I chose the `reflect-cpp` library for simple configuration and future save/load logic.
+* The core is my implementation of the ECS pattern [in a separate "simulation" layer](./src/Simulation/ECS):
+  * **Entity** - a simple class representing an object. 
+  * **Component** - a data structure that stores a map of Entities to filter them by component in O(1) time.
+  * **System** - runtime logic operating on entities, processing all entities that have the required components.
+* [A level](./src/Simulation/GameLevels/Level1.cpp) stores arrays of systems and entities. 
+  Each specific level creates the appropriate entities, systems, and components using 
+  convenient interfaces based on variadic templates.
+* There is also an implementation of a Qt/UE-signal-like reactive messaging system. 
+  [It is an Observer pattern implementation](./src/EventsHandling), which helps dispatch input events to systems.
+* Dependencies are fetched from their respective GitHub repositories via CMake FetchContent. 
+  In total, there are around 228 files to compile.
 
 ## TODO
 
-There should have been:
-* A mouse-based firing system
-* A menu with the pause screen
-* A system for current score based on simple number images
-  (thus, it would have been my own image-based font)
-* A range of planform types (regular, crashable, movable, etc.)
+Features originally planned:
+* A mouse-based shooting system
+* A pause menu screen
+* A scoring system rendered using simple digit images
+  (effectively a custom image-based font)
+* A variety of platform types (regular, breakable, moving, etc.)
 
-But the deadline went pass me. The scope was too large for me than.
+However, I ran out of time before the deadline. The scope was too large for me back then.
 
-There are some bugs in the code, need to fix them sometime:
+Known bugs to fix:
 
-* The character input may stuck to left or right after releasing these buttons.
-* The whole game could crash at some point
-* The character movement must be adjusted to be more smooth and not so hard to control.
-* Extract Simulation into a separated library to make it easy testable.
+* Character input can get stuck moving left or right after releasing the keys.
+* The game may occasionally crash.
+* Character movement needs smoothing to make controls less clunky.
+* Extract Simulation into a separate library to make it easily testable.
 
 ## Build
 
-* You need a MinGW compiler with C++26 support
-* You need a newest CMake
-* I'm using CLion, so you shouldn't print it by yourself: 
+* A MinGW compiler with C++26 support
+* The latest CMake version
+* I'm using CLion, but if you want to build from the command line: 
 
+  ```
   cmake.exe --build cmake-build-release --target install -j 8
+  ```
 
 ## Notes
 
-* The AI agents wasn't used while implementing this game and framework.
-  I've only started to use them to migrate from a propriate Framework to my own implementation of its interface.
+* AI agents were not used while implementing this game and framework.
+  I only started using them to migrate from the proprietary framework to my own implementation of its interface.
